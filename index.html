@@ -5,32 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活動票種試算表</title>
     <style>
-        * { box-sizing: border-box; } /* 全域設定防止溢出 */
+        * { box-sizing: border-box; }
         body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; padding: 20px; display: flex; justify-content: center; }
         .container { width: 100%; max-width: 500px; background: #fff; }
         
         .info { background: #f0f8ff; padding: 20px; border-radius: 8px; margin-bottom: 30px; font-size: 0.95em; }
         .date-text { font-size: 1.2em; font-weight: bold; color: #333; margin-top: 5px; }
         
-        .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
-        input { width: 60px; text-align: center; padding: 5px; }
-        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; font-size: 16px; margin: 20px 0; border-radius: 5px; cursor: pointer; }
+        /* 增大輸入欄位與標籤 */
+        .input-group { margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; font-size: 16px; }
+        input { width: 80px; height: 40px; text-align: center; font-size: 18px; border: 2px solid #ccc; border-radius: 5px; }
+        
+        button { width: 100%; padding: 15px; font-size: 18px; margin-top: 10px; border-radius: 5px; cursor: pointer; border: none; }
+        .btn-calc { background: #28a745; color: white; }
+        .btn-clear { background: #6c757d; color: white; }
         
         #result-area { display: none; margin-top: 20px; padding: 20px; border: 1px solid #28a745; background: #f9fff9; border-radius: 8px; }
-        .result-item { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 8px 0; }
+        .result-item { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 10px 0; font-size: 16px; }
         
-        .register-btn { 
-            display: block; 
-            width: 100%; 
-            padding: 15px 0; 
-            background: #007bff; 
-            color: white; 
-            text-align: center; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 5px; 
-            margin-top: 20px; 
-        }
+        .register-btn { display: block; width: 100%; padding: 15px; background: #007bff; color: white; text-align: center; text-decoration: none; font-weight: bold; border-radius: 5px; margin-top: 20px; }
         
         table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 13px; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
@@ -54,12 +47,13 @@
     <div class="input-group"><label>12歲以下兒童：</label><input type="number" id="kid" value="0" min="0"></div>
     <div class="input-group"><label>內門/身障免費：</label><input type="number" id="free" value="0" min="0"></div>
     
-    <button onclick="calculate()">計算建議票種組合</button>
+    <button class="btn-calc" onclick="calculate()">計算建議票種組合</button>
+    <button class="btn-clear" onclick="clearFields()">清除重新計算</button>
 
     <div id="result-area">
         <strong>建議填寫票種：</strong>
         <div id="suggestion-list" style="margin-top:10px;"></div>
-        <div id="detail-msg" style="color:red; font-size:13px; margin-top:10px; font-weight:bold;"></div>
+        <div id="detail-msg" style="color:red; font-size:14px; margin-top:10px; font-weight:bold;"></div>
         
         <a href="#" class="register-btn">前往 Beclass 報名表單</a>
     </div>
@@ -108,6 +102,15 @@
         msg.innerHTML = (freeKid > 0 || o > 0 || paidKid > 0) ? `※ 提醒：本次含免費/優待票種，活動當日請務必攜帶相關證明文件！` : "";
 
         document.getElementById('result-area').style.display = 'block';
+    }
+
+    function clearFields() {
+        document.getElementById('kao').value = 0;
+        document.getElementById('gen').value = 0;
+        document.getElementById('old').value = 0;
+        document.getElementById('kid').value = 0;
+        document.getElementById('free').value = 0;
+        document.getElementById('result-area').style.display = 'none';
     }
 </script>
 </body>
