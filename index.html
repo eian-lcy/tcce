@@ -1,117 +1,236 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活動票種試算表</title>
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; padding: 20px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 500px; background: #fff; }
-        
-        .info { background: #f0f8ff; padding: 20px; border-radius: 8px; margin-bottom: 30px; font-size: 0.95em; }
-        .date-text { font-size: 1.2em; font-weight: bold; color: #333; margin-top: 5px; }
-        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+        }
+
+        .info {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .date-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+        }
+
         /* 增大輸入欄位與標籤 */
-        .input-group { margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; font-size: 16px; }
-        input { width: 80px; height: 40px; text-align: center; font-size: 18px; border: 2px solid #ccc; border-radius: 5px; }
-        
-        button { width: 100%; padding: 15px; font-size: 18px; margin-top: 10px; border-radius: 5px; cursor: pointer; border: none; }
-        .btn-calc { background: #28a745; color: white; }
-        .btn-clear { background: #6c757d; color: white; }
-        
-        #result-area { display: none; margin-top: 20px; padding: 20px; border: 1px solid #28a745; background: #f9fff9; border-radius: 8px; }
-        .result-item { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 10px 0; font-size: 16px; }
-        
-        .register-btn { display: block; width: 100%; padding: 15px; background: #007bff; color: white; text-align: center; text-decoration: none; font-weight: bold; border-radius: 5px; margin-top: 20px; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 13px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-        th { background-color: #f8f9fa; }
-        .disclaimer { font-size: 12px; color: #777; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px; }
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+
+        input {
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-calc {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-clear {
+            background: #6c757d;
+            color: white;
+        }
+
+        #result-area {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #28a745;
+            background: #f9fff9;
+            border-radius: 8px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #ccc;
+            padding: 10px 0;
+            font-size: 16px;
+        }
+
+        .register-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            font-size: 13px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #777;
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>樂活社南區活動</h2>
-    <div class="info">
-        <div><strong>活動名稱：</strong>高雄內門《野森動物學校》</div>
-        <div class="date-text">活動日期：115 年 8 月 22 日</div>
-        <div style="margin-top: 10px; font-size: 0.9em;">全票 $399 | 市民 $299 | 優待 $149 | 免費 $0</div>
+    <div class="container">
+        <h2>樂活社南區活動</h2>
+        <div class="info">
+            <div><strong>活動名稱：</strong>高雄內門《野森動物學校》</div>
+            <div class="date-text">活動日期：115 年 8 月 22 日</div>
+            <div style="margin-top: 10px; font-size: 0.9em;">全票 $399 | 市民 $299 | 優待 $149 | 免費 $0</div>
+        </div>
+
+        <div class="input-group"><label>高雄市民成人：</label><input type="number" id="kao" value="0" min="0"></div>
+        <div class="input-group"><label>一般成人：</label><input type="number" id="gen" value="0" min="0"></div>
+        <div class="input-group"><label>65歲以上長輩：</label><input type="number" id="old" value="0" min="0"></div>
+        <div class="input-group"><label>12歲以下兒童：</label><input type="number" id="kid" value="0" min="0"></div>
+        <div class="input-group"><label>內門/身障免費：</label><input type="number" id="free" value="0" min="0"></div>
+
+        <button class="btn-calc" onclick="calculate()">計算建議票種組合</button>
+        <button class="btn-clear" onclick="clearFields()">清除重新計算</button>
+
+        <div id="result-area">
+            <strong>建議填寫票種：</strong>
+            <div id="suggestion-list" style="margin-top:10px;"></div>
+            <div id="detail-msg" style="color:red; font-size:14px; margin-top:10px; font-weight:bold;"></div>
+
+            <a href="#" class="register-btn">前往 Beclass 報名表單</a>
+        </div>
+
+        <h3>常見組合與認定標準</h3>
+        <table>
+            <tr>
+                <th>家庭結構</th>
+                <th>應選組合</th>
+            </tr>
+            <tr>
+                <td>2大1小</td>
+                <td>2全票+0優待</td>
+            </tr>
+            <tr>
+                <td>2大3小</td>
+                <td>2全票+2優待</td>
+            </tr>
+            <tr>
+                <td>1市民+2小</td>
+                <td>1市民票+1優待</td>
+            </tr>
+            <tr>
+                <td>1市民+1長輩</td>
+                <td>1市民票+1優待</td>
+            </tr>
+        </table>
+
+        <div style="font-size: 12px; margin-top: 15px; color: #333; line-height: 1.8;">
+            <strong>※ 年齡認定基準 (以 115/08/22 為準)：</strong><br>
+            - 12歲以下：2014/08/23 (含) 以後出生。<br>
+            - 65歲以上：1961/08/22 (含) 以前出生。<br>
+            <span style="color:red;">● 優待票/免費兒童，當日請備妥身分證/健保卡供核對。</span>
+        </div>
+
+        <div class="disclaimer">
+            ※ 免責聲明：本試算僅供報名參考，實際票價與權益依 Beclass 報名表單為主。
+        </div>
     </div>
 
-    <div class="input-group"><label>高雄市民成人：</label><input type="number" id="kao" value="0" min="0"></div>
-    <div class="input-group"><label>一般成人：</label><input type="number" id="gen" value="0" min="0"></div>
-    <div class="input-group"><label>65歲以上長輩：</label><input type="number" id="old" value="0" min="0"></div>
-    <div class="input-group"><label>12歲以下兒童：</label><input type="number" id="kid" value="0" min="0"></div>
-    <div class="input-group"><label>內門/身障免費：</label><input type="number" id="free" value="0" min="0"></div>
-    
-    <button class="btn-calc" onclick="calculate()">計算建議票種組合</button>
-    <button class="btn-clear" onclick="clearFields()">清除重新計算</button>
+    <script>
+        function calculate() {
+            let k = parseInt(document.getElementById('kao').value) || 0;
+            let g = parseInt(document.getElementById('gen').value) || 0;
+            let o = parseInt(document.getElementById('old').value) || 0;
+            let c = parseInt(document.getElementById('kid').value) || 0;
+            let f = parseInt(document.getElementById('free').value) || 0;
 
-    <div id="result-area">
-        <strong>建議填寫票種：</strong>
-        <div id="suggestion-list" style="margin-top:10px;"></div>
-        <div id="detail-msg" style="color:red; font-size:14px; margin-top:10px; font-weight:bold;"></div>
-        
-        <a href="#" class="register-btn">前往 Beclass 報名表單</a>
-    </div>
+            let adultPool = k + g;
+            let freeKid = Math.min(adultPool, c);
+            let paidKid = Math.max(0, c - freeKid);
 
-    <h3>常見組合與認定標準</h3>
-    <table>
-        <tr><th>家庭結構</th><th>應選組合</th></tr>
-        <tr><td>2大1小</td><td>2全票+0優待</td></tr>
-        <tr><td>2大3小</td><td>2全票+2優待</td></tr>
-        <tr><td>1市民+2小</td><td>1市民票+1優待</td></tr>
-        <tr><td>1市民+1長輩</td><td>1市民票+1優待</td></tr>
-    </table>
-    
-    <div style="font-size: 12px; margin-top: 15px; color: #333; line-height: 1.8;">
-        <strong>※ 年齡認定基準 (以 115/08/22 為準)：</strong><br>
-        - 12歲以下：2014/08/23 (含) 以後出生。<br>
-        - 65歲以上：1961/08/22 (含) 以前出生。<br>
-        <span style="color:red;">● 優待票/免費兒童，當日請備妥身分證/健保卡供核對。</span>
-    </div>
+            let list = document.getElementById('suggestion-list');
+            list.innerHTML = "";
+            if (k > 0) list.innerHTML += `<div class="result-item"><span>高雄市民票：</span><span>${k} 張</span></div>`;
+            if (g > 0) list.innerHTML += `<div class="result-item"><span>全票(成人)：</span><span>${g} 張</span></div>`;
+            if ((o + paidKid) > 0) list.innerHTML += `<div class="result-item"><span>優待票(65歲+/2-12歲)：</span><span>${o + paidKid} 張</span></div>`;
+            if (f > 0) list.innerHTML += `<div class="result-item"><span>免費票：</span><span>${f} 張</span></div>`;
 
-    <div class="disclaimer">
-        ※ 免責聲明：本試算僅供報名參考，實際票價與權益依 Beclass 報名表單為主。
-    </div>
-</div>
+            let msg = document.getElementById('detail-msg');
+            msg.innerHTML = (freeKid > 0 || o > 0 || paidKid > 0) ? `※ 提醒：本次含免費/優待票種，活動當日請務必攜帶相關證明文件！` : "";
 
-<script>
-    function calculate() {
-        let k = parseInt(document.getElementById('kao').value) || 0;
-        let g = parseInt(document.getElementById('gen').value) || 0;
-        let o = parseInt(document.getElementById('old').value) || 0;
-        let c = parseInt(document.getElementById('kid').value) || 0;
-        let f = parseInt(document.getElementById('free').value) || 0;
+            document.getElementById('result-area').style.display = 'block';
+        }
 
-        let adultPool = k + g; 
-        let freeKid = Math.min(adultPool, c); 
-        let paidKid = Math.max(0, c - freeKid); 
-
-        let list = document.getElementById('suggestion-list');
-        list.innerHTML = "";
-        if (k > 0) list.innerHTML += `<div class="result-item"><span>高雄市民票：</span><span>${k} 張</span></div>`;
-        if (g > 0) list.innerHTML += `<div class="result-item"><span>全票(成人)：</span><span>${g} 張</span></div>`;
-        if ((o + paidKid) > 0) list.innerHTML += `<div class="result-item"><span>優待票(65歲+/2-12歲)：</span><span>${o + paidKid} 張</span></div>`;
-        if (f > 0) list.innerHTML += `<div class="result-item"><span>免費票：</span><span>${f} 張</span></div>`;
-
-        let msg = document.getElementById('detail-msg');
-        msg.innerHTML = (freeKid > 0 || o > 0 || paidKid > 0) ? `※ 提醒：本次含免費/優待票種，活動當日請務必攜帶相關證明文件！` : "";
-
-        document.getElementById('result-area').style.display = 'block';
-    }
-
-    function clearFields() {
-        document.getElementById('kao').value = 0;
-        document.getElementById('gen').value = 0;
-        document.getElementById('old').value = 0;
-        document.getElementById('kid').value = 0;
-        document.getElementById('free').value = 0;
-        document.getElementById('result-area').style.display = 'none';
-    }
-</script>
+        function clearFields() {
+            document.getElementById('kao').value = 0;
+            document.getElementById('gen').value = 0;
+            document.getElementById('old').value = 0;
+            document.getElementById('kid').value = 0;
+            document.getElementById('free').value = 0;
+            document.getElementById('result-area').style.display = 'none';
+        }
+    </script>
 </body>
+
 </html>
